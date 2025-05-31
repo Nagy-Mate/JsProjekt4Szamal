@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Számlák kezelése</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <h1>Számlák</h1>
+
+    <button id="addToggle" onclick="toggleAddForm()">Új számla hozzáadása</button>
+
+    <div id="addFormContainer" style="display: none;">
+        <form id="invoiceForm" onsubmit="event.preventDefault(); createInvoice();">
+            <h2>Új számla hozzáadása</h2>
+
+            <label for="issuerId">Kiállító:</label>
+            <select id="issuerId" required></select>
+
+            <label for="customerId">Vevő:</label>
+            <select id="customerId" required></select>
+
+            <label for="invoiceNumber">Számlaszám:</label>
+            <input type="number" id="invoiceNumber" required readonly />
+
+            <label for="invoiceDate">Számla dátuma:</label>
+            <input type="date" id="invoiceDate" required />
+
+            <label for="dateOfCompletion">Teljesítés dátuma:</label>
+            <input type="date" id="dateOfCompletion" required />
+
+            <label for="paymentDeadline">Fizetési határidő:</label>
+            <input type="date" id="paymentDeadline" required />
+
+            <label for="totalAmount">Összeg (Ft):</label>
+            <input type="number" id="totalAmount" required />
+
+            <label for="VATAmount">ÁFA (Ft):</label>
+            <input type="number" id="VATAmount" required />
+
+            <button type="submit">Számla mentése</button>
+        </form>
+    </div>
+
+    <!-- Szerkesztés -->
+    <h2 id="editTitleHeading" style="display: none;">Számla szerkesztése</h2>
+    <form id="editForm" onsubmit="event.preventDefault(); updateInvoice();" style="display: none;">
+        <input type="hidden" id="editId" />
+
+        <label for="editIssuerId">Kiállító:</label>
+        <select id="editIssuerId" required></select>
+
+        <label for="editCustomerId">Vevő:</label>
+        <select id="editCustomerId" required></select>
+
+        <label for="editInvoiceNumber">Számlaszám:</label>
+        <input type="number" id="editInvoiceNumber" required />
+
+        <label for="editInvoiceDate">Számla dátuma:</label>
+        <input type="date" id="editInvoiceDate" required />
+
+        <label for="editDateOfCompletion">Teljesítés:</label>
+        <input type="date" id="editDateOfCompletion" required />
+
+        <label for="editPaymentDeadline">Határidő:</label>
+        <input type="date" id="editPaymentDeadline" required />
+
+        <label for="editTotalAmount">Összeg (Ft):</label>
+        <input type="number" id="editTotalAmount" required />
+
+        <label for="editVATAmount">ÁFA (Ft):</label>
+        <input type="number" id="editVATAmount" required />
+
+        <button type="submit">Mentés</button>
+        <button type="button" onclick="cancelEdit()">Mégse</button>
+    </form>
+
+    <div id="table"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
